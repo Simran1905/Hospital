@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cf00921d596f4c44956d314cf26f60fe" Name="Diagram1">
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel1.Billing" Width="1.5" PointX="2.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel1.Doctor" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel1.Patient" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel1.PaymentBil" Width="1.5" PointX="5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel1.Registration" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel1.Report" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel1.Room" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel1.Room_Assignment" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="Hospital_Management_SystemModel1.FK__PaymentBi__Patie__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_Management_SystemModel1.FK__Room_Assi__Docto__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_Management_SystemModel1.FK__Report__Patient___5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="Hospital_Management_SystemModel1.FK__Room_Assi__Room___628FA481" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,604 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Hospital_Management_SystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Billing">
+          <Key>
+            <PropertyRef Name="Bill_Id" />
+          </Key>
+          <Property Name="Bill_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rid" Type="int" Nullable="false" />
+          <Property Name="Did" Type="int" Nullable="false" />
+          <Property Name="Pid" Type="int" Nullable="false" />
+          <Property Name="Doctor_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patient_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Room_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Bill_Date" Type="datetime" Nullable="false" />
+          <Property Name="Room_Bill" Type="int" Nullable="false" />
+          <Property Name="Doctor_Bill" Type="int" Nullable="false" />
+          <Property Name="Medicine_Bill" Type="int" Nullable="false" />
+          <Property Name="Total_Bill" Type="int" Nullable="false" />
+          <Property Name="Aid" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Doctor_Id" />
+          </Key>
+          <Property Name="Doctor_Id" Type="int" Nullable="false" />
+          <Property Name="Doctor_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contact_No" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Speciliazation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Charges_Per_Day" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Patient_Id" />
+          </Key>
+          <Property Name="Patient_Id" Type="int" Nullable="false" />
+          <Property Name="Patient_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Patient_Address" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Contact_No" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Guardian_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Emergency_contact_no" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nature_Of_Disease" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Patient_Condition" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Doctor_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Room_Type" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentBils">
+          <Key>
+            <PropertyRef Name="Payment_id" />
+          </Key>
+          <Property Name="Payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Patient_Bill_Id" Type="int" />
+          <Property Name="Patient_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Doctor_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Room_Bill" Type="int" Nullable="false" />
+          <Property Name="Doctor_Bill" Type="int" />
+          <Property Name="Medicine_Bill" Type="int" />
+          <Property Name="Total_Bill" Type="int" />
+          <Property Name="Status" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="ReportId" />
+          </Key>
+          <Property Name="ReportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentId" Type="int" Nullable="false" />
+          <Property Name="PatientName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PatientAddress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Disease" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PatientCondition" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdmissionDate" Type="datetime" Nullable="false" />
+          <Property Name="DoctorName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DischargeDate" Type="datetime" Nullable="false" />
+          <Property Name="Patient_Id" Type="int" />
+          <Property Name="Patient_BillId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Room_id" />
+          </Key>
+          <Property Name="Room_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Room_Type" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="No_Of_Rooms" Type="int" Nullable="false" />
+          <Property Name="Rates_Per_Day" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Room_Assignment">
+          <Key>
+            <PropertyRef Name="Assignment_no" />
+          </Key>
+          <Property Name="Assignment_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Room_Id" Type="int" />
+          <Property Name="Patient_Id" Type="int" Nullable="false" />
+          <Property Name="Admission_Date" Type="datetime" />
+          <Property Name="Doctor_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Patient_Condition" Type="varchar" MaxLength="50" />
+          <Property Name="Doctor_Id" Type="int" />
+          <Property Name="Patient_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Room_Type" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__PaymentBi__Patie__66603565">
+          <End Role="Billing" Type="Self.Billing" Multiplicity="0..1" />
+          <End Role="PaymentBils" Type="Self.PaymentBils" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Billing">
+              <PropertyRef Name="Bill_Id" />
+            </Principal>
+            <Dependent Role="PaymentBils">
+              <PropertyRef Name="Patient_Bill_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Report__Patient___5FB337D6">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Patient_Id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="Patient_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room_Assi__Docto__6383C8BA">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
+          <End Role="Room_Assignment" Type="Self.Room_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Doctor_Id" />
+            </Principal>
+            <Dependent Role="Room_Assignment">
+              <PropertyRef Name="Doctor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room_Assi__Room___628FA481">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="Room_Assignment" Type="Self.Room_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="Room_id" />
+            </Principal>
+            <Dependent Role="Room_Assignment">
+              <PropertyRef Name="Room_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GeneratePayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Patient_Bill_Id" Type="int" Mode="In" />
+          <Parameter Name="Status" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SearchPayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Payment_Id" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="Hospital_Management_SystemModelStoreContainer">
+          <EntitySet Name="Billing" EntityType="Self.Billing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentBils" EntityType="Self.PaymentBils" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room_Assignment" EntityType="Self.Room_Assignment" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PaymentBi__Patie__66603565" Association="Self.FK__PaymentBi__Patie__66603565">
+            <End Role="Billing" EntitySet="Billing" />
+            <End Role="PaymentBils" EntitySet="PaymentBils" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Report__Patient___5FB337D6" Association="Self.FK__Report__Patient___5FB337D6">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room_Assi__Docto__6383C8BA" Association="Self.FK__Room_Assi__Docto__6383C8BA">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Room_Assignment" EntitySet="Room_Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room_Assi__Room___628FA481" Association="Self.FK__Room_Assi__Room___628FA481">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Room_Assignment" EntitySet="Room_Assignment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Hospital_Management_SystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Doctor_Id" />
+          </Key>
+          <Property Name="Doctor_Id" Type="Int32" Nullable="false" />
+          <Property Name="Doctor_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contact_No" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Speciliazation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Charges" Type="Int32" />
+          <NavigationProperty Name="Room_Assignment" Relationship="Hospital_Management_SystemModel.FK_Room_Assignment_Doctor" FromRole="Doctor" ToRole="Room_Assignment" />
+          <Property Name="Charges_Per_Day" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Patient_Id" />
+          </Key>
+          <Property Name="Patient_Id" Type="Int32" Nullable="false" />
+          <Property Name="Patient_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Patient_Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contact_No" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Guardian_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Emergency_contact_no" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nature_Of_Disease" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patient_Condition" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Reports" Relationship="Hospital_Management_SystemModel.FK_Report_Patient" FromRole="Patient" ToRole="Report" />
+          <Property Name="Doctor_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Room_Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Room_id" />
+          </Key>
+          <Property Name="Room_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Room_Type" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="No_Of_Rooms" Type="Int32" Nullable="false" />
+          <Property Name="Rates_Per_Day" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Room_Assignment" Relationship="Hospital_Management_SystemModel.FK_Room_Assignment_Room" FromRole="Room" ToRole="Room_Assignment" />
+          <Property Name="Room_type" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Room_Type1" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Room_Assignment">
+          <Key>
+            <PropertyRef Name="Assignment_no" />
+          </Key>
+          <Property Name="Assignment_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Room_Id" Type="Int32" />
+          <Property Name="Patient_Id" Type="Int32" Nullable="false" />
+          <Property Name="Admission_Date" Type="DateTime" Precision="3" />
+          <Property Name="Doctor_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Patient_Condition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Doctor_Id" Type="Int32" />
+          <Property Name="Patient_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Room_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Doctor" Relationship="Hospital_Management_SystemModel.FK_Room_Assignment_Doctor" FromRole="Room_Assignment" ToRole="Doctor" />
+          <NavigationProperty Name="Room" Relationship="Hospital_Management_SystemModel.FK_Room_Assignment_Room" FromRole="Room_Assignment" ToRole="Room" />
+        </EntityType>
+        <EntityContainer Name="Hospital_Management_SystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Doctors" EntityType="Self.Doctor" />
+          <EntitySet Name="Patients" EntityType="Self.Patient" />
+          <EntitySet Name="Registrations" EntityType="Self.Registration" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="Room_Assignment" EntityType="Self.Room_Assignment" />
+          <FunctionImport Name="DeletePaymentDetails">
+          <Parameter Name="PaymentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GeneratePayment">
+            <Parameter Name="Patient_Bill_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetPaymentDetails" ReturnType="Collection(Hospital_Management_SystemModel.GetPaymentDetails_Result)" />
+          <FunctionImport Name="SearchPayment" ReturnType="Collection(Hospital_Management_SystemModel.SearchPayment_Result)">
+          <Parameter Name="Payment_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdatePaymentDetails">
+            <Parameter Name="PaymentId" Mode="In" Type="Int32" />
+            <Parameter Name="PatientName" Mode="In" Type="String" />
+            <Parameter Name="Age" Mode="In" Type="Int32" />
+            <Parameter Name="Gender" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="ContactNumber" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+          </FunctionImport>
+          <AssociationSet Name="FK_Room_Assignment_Doctor" Association="Hospital_Management_SystemModel.FK_Room_Assignment_Doctor">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="Room_Assignment" EntitySet="Room_Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_Assignment_Room" Association="Hospital_Management_SystemModel.FK_Room_Assignment_Room">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Room_Assignment" EntitySet="Room_Assignment" />
+          </AssociationSet>
+          <EntitySet Name="Reports" EntityType="Hospital_Management_SystemModel.Report" />
+          <AssociationSet Name="FK_Report_Patient" Association="Hospital_Management_SystemModel.FK_Report_Patient">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <EntitySet Name="Billings" EntityType="Hospital_Management_SystemModel.Billing" />
+          <EntitySet Name="PaymentBils" EntityType="Hospital_Management_SystemModel.PaymentBil" />
+          <AssociationSet Name="FK__PaymentBi__Patie__66603565" Association="Hospital_Management_SystemModel.FK__PaymentBi__Patie__66603565">
+            <End Role="Billing" EntitySet="Billings" />
+            <End Role="PaymentBil" EntitySet="PaymentBils" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="GetPaymentDetails_Result">
+          <Property Type="Int32" Name="PaymentId" Nullable="false" />
+          <Property Type="Int32" Name="Patient_Billid" Nullable="true" />
+          <Property Type="String" Name="PatientName" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="ContactNumber" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="Room_Bill" Nullable="false" />
+          <Property Type="Int32" Name="Doctor_Bill" Nullable="false" />
+          <Property Type="Int32" Name="Medicine_Bill" Nullable="false" />
+          <Property Type="Int32" Name="Total_Bill" Nullable="false" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="SearchPayment_Result">
+          <Property Type="Int32" Name="PaymentId" Nullable="false" />
+          <Property Type="Int32" Name="Patient_Billid" Nullable="true" />
+          <Property Type="String" Name="PatientName" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="ContactNumber" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="Total_Bill" Nullable="false" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <Association Name="FK_Room_Assignment_Doctor">
+          <End Type="Hospital_Management_SystemModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+          <End Type="Hospital_Management_SystemModel.Room_Assignment" Role="Room_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Doctor_Id" />
+            </Principal>
+            <Dependent Role="Room_Assignment">
+              <PropertyRef Name="Doctor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_Assignment_Room">
+          <End Type="Hospital_Management_SystemModel.Room" Role="Room" Multiplicity="0..1" />
+          <End Type="Hospital_Management_SystemModel.Room_Assignment" Role="Room_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="Room_id" />
+            </Principal>
+            <Dependent Role="Room_Assignment">
+              <PropertyRef Name="Room_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="ReportId" />
+          </Key>
+          <Property Name="ReportId" Type="Int32" Nullable="false" />
+          <Property Name="PaymentId" Type="Int32" Nullable="false" />
+          <Property Name="PatientName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PatientAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Disease" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PatientCondition" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AdmissionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DoctorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DischargeDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Patient_Id" Type="Int32" />
+          <Property Name="Patient_Billid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Patient" Relationship="Hospital_Management_SystemModel.FK_Report_Patient" FromRole="Report" ToRole="Patient" />
+          <Property Name="Patient_BillId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Report_Patient">
+          <End Type="Hospital_Management_SystemModel.Patient" Role="Patient" Multiplicity="1" />
+          <End Type="Hospital_Management_SystemModel.Report" Role="Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Patient_Id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="Patient_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Billing">
+          <Key>
+            <PropertyRef Name="Bill_Id" />
+          </Key>
+          <Property Name="Bill_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rid" Type="Int32" Nullable="false" />
+          <Property Name="Did" Type="Int32" Nullable="false" />
+          <Property Name="Pid" Type="Int32" Nullable="false" />
+          <Property Name="Doctor_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Patient_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Room_type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Bill_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Room_Bill" Type="Int32" Nullable="false" />
+          <Property Name="Doctor_Bill" Type="Int32" Nullable="false" />
+          <Property Name="Medicine_Bill" Type="Int32" Nullable="false" />
+          <Property Name="Total_Bill" Type="Int32" Nullable="false" />
+          <Property Name="Aid" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PaymentBils" Relationship="Hospital_Management_SystemModel.FK__PaymentBi__Patie__66603565" FromRole="Billing" ToRole="PaymentBil" />
+        </EntityType>
+        <EntityType Name="PaymentBil">
+          <Key>
+            <PropertyRef Name="Payment_id" />
+          </Key>
+          <Property Name="Payment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Patient_Bill_Id" Type="Int32" />
+          <Property Name="Patient_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Doctor_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Room_Bill" Type="Int32" Nullable="false" />
+          <Property Name="Doctor_Bill" Type="Int32" />
+          <Property Name="Medicine_Bill" Type="Int32" />
+          <Property Name="Total_Bill" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Billing" Relationship="Hospital_Management_SystemModel.FK__PaymentBi__Patie__66603565" FromRole="PaymentBil" ToRole="Billing" />
+        </EntityType>
+        <Association Name="FK__PaymentBi__Patie__66603565">
+          <End Type="Hospital_Management_SystemModel.Billing" Role="Billing" Multiplicity="0..1" />
+          <End Type="Hospital_Management_SystemModel.PaymentBil" Role="PaymentBil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Billing">
+              <PropertyRef Name="Bill_Id" />
+            </Principal>
+            <Dependent Role="PaymentBil">
+              <PropertyRef Name="Patient_Bill_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Hospital_Management_SystemModelStoreContainer" CdmEntityContainer="Hospital_Management_SystemEntities">
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="Hospital_Management_SystemModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="Charges_Per_Day" ColumnName="Charges_Per_Day" />
+                <ScalarProperty Name="Doctor_Id" ColumnName="Doctor_Id" />
+                <ScalarProperty Name="Doctor_Name" ColumnName="Doctor_Name" />
+                <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+                <ScalarProperty Name="Speciliazation" ColumnName="Speciliazation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="Hospital_Management_SystemModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="Room_Type" ColumnName="Room_Type" />
+                <ScalarProperty Name="Doctor_Name" ColumnName="Doctor_Name" />
+                <ScalarProperty Name="Patient_Id" ColumnName="Patient_Id" />
+                <ScalarProperty Name="Patient_Name" ColumnName="Patient_Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Patient_Address" ColumnName="Patient_Address" />
+                <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+                <ScalarProperty Name="Guardian_Name" ColumnName="Guardian_Name" />
+                <ScalarProperty Name="Emergency_contact_no" ColumnName="Emergency_contact_no" />
+                <ScalarProperty Name="Nature_Of_Disease" ColumnName="Nature_Of_Disease" />
+                <ScalarProperty Name="Patient_Condition" ColumnName="Patient_Condition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registrations">
+            <EntityTypeMapping TypeName="Hospital_Management_SystemModel.Registration">
+              <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="Hospital_Management_SystemModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="Room_Type1" ColumnName="Room_Type" />
+                <ScalarProperty Name="Room_id" ColumnName="Room_id" />
+                <ScalarProperty Name="No_Of_Rooms" ColumnName="No_Of_Rooms" />
+                <ScalarProperty Name="Rates_Per_Day" ColumnName="Rates_Per_Day" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room_Assignment">
+            <EntityTypeMapping TypeName="Hospital_Management_SystemModel.Room_Assignment">
+              <MappingFragment StoreEntitySet="Room_Assignment">
+                <ScalarProperty Name="Assignment_no" ColumnName="Assignment_no" />
+                <ScalarProperty Name="Room_Id" ColumnName="Room_Id" />
+                <ScalarProperty Name="Patient_Id" ColumnName="Patient_Id" />
+                <ScalarProperty Name="Admission_Date" ColumnName="Admission_Date" />
+                <ScalarProperty Name="Doctor_Name" ColumnName="Doctor_Name" />
+                <ScalarProperty Name="Patient_Condition" ColumnName="Patient_Condition" />
+                <ScalarProperty Name="Doctor_Id" ColumnName="Doctor_Id" />
+                <ScalarProperty Name="Patient_Name" ColumnName="Patient_Name" />
+                <ScalarProperty Name="Room_Type" ColumnName="Room_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GeneratePayment" FunctionName="Hospital_Management_SystemModel.Store.GeneratePayment" />
+          <FunctionImportMapping FunctionImportName="SearchPayment" FunctionName="Hospital_Management_SystemModel.Store.SearchPayment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Hospital_Management_SystemModel.SearchPayment_Result">
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="Patient_Billid" ColumnName="Patient_Billid" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Total_Bill" ColumnName="Total_Bill" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="Hospital_Management_SystemModel.Report">
+              <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="Patient_BillId" ColumnName="Patient_BillId" />
+                <ScalarProperty Name="Patient_Id" ColumnName="Patient_Id" />
+                <ScalarProperty Name="DischargeDate" ColumnName="DischargeDate" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="AdmissionDate" ColumnName="AdmissionDate" />
+                <ScalarProperty Name="PatientCondition" ColumnName="PatientCondition" />
+                <ScalarProperty Name="Disease" ColumnName="Disease" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="PatientAddress" ColumnName="PatientAddress" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Billings">
+            <EntityTypeMapping TypeName="Hospital_Management_SystemModel.Billing">
+              <MappingFragment StoreEntitySet="Billing">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Aid" ColumnName="Aid" />
+                <ScalarProperty Name="Total_Bill" ColumnName="Total_Bill" />
+                <ScalarProperty Name="Medicine_Bill" ColumnName="Medicine_Bill" />
+                <ScalarProperty Name="Doctor_Bill" ColumnName="Doctor_Bill" />
+                <ScalarProperty Name="Room_Bill" ColumnName="Room_Bill" />
+                <ScalarProperty Name="Bill_Date" ColumnName="Bill_Date" />
+                <ScalarProperty Name="Room_type" ColumnName="Room_type" />
+                <ScalarProperty Name="Patient_Name" ColumnName="Patient_Name" />
+                <ScalarProperty Name="Doctor_Name" ColumnName="Doctor_Name" />
+                <ScalarProperty Name="Pid" ColumnName="Pid" />
+                <ScalarProperty Name="Did" ColumnName="Did" />
+                <ScalarProperty Name="Rid" ColumnName="Rid" />
+                <ScalarProperty Name="Bill_Id" ColumnName="Bill_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentBils">
+            <EntityTypeMapping TypeName="Hospital_Management_SystemModel.PaymentBil">
+              <MappingFragment StoreEntitySet="PaymentBils">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Total_Bill" ColumnName="Total_Bill" />
+                <ScalarProperty Name="Medicine_Bill" ColumnName="Medicine_Bill" />
+                <ScalarProperty Name="Doctor_Bill" ColumnName="Doctor_Bill" />
+                <ScalarProperty Name="Room_Bill" ColumnName="Room_Bill" />
+                <ScalarProperty Name="Doctor_Name" ColumnName="Doctor_Name" />
+                <ScalarProperty Name="Patient_Name" ColumnName="Patient_Name" />
+                <ScalarProperty Name="Patient_Bill_Id" ColumnName="Patient_Bill_Id" />
+                <ScalarProperty Name="Payment_id" ColumnName="Payment_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

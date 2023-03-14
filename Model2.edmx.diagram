@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="68afdc885a6241a797e6110d447d143e" Name="Diagram1">
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel.Doctor" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel.Patient" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel.Registration" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel.Room" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel.Room_Assignment" Width="1.5" PointX="6.375" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="Hospital_Management_SystemModel.FK_Room_Assignment_Doctor" />
+        <AssociationConnector Association="Hospital_Management_SystemModel.FK_Room_Assignment_Room" />
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel.Report" Width="1.5" PointX="9.5" PointY="3.625" />
+        <AssociationConnector Association="Hospital_Management_SystemModel.FK_Report_Patient" />
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel.Billing" Width="1.5" PointX="8.375" PointY="9" />
+        <EntityTypeShape EntityType="Hospital_Management_SystemModel.PaymentBil" Width="1.5" PointX="10.625" PointY="9.5" />
+        <AssociationConnector Association="Hospital_Management_SystemModel.FK__PaymentBi__Patie__66603565" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
